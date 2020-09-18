@@ -1,0 +1,42 @@
+@mixin clearfix{
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centeredUsingPosition{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/*media queries
+
+0 - 600px : mobile screen
+600px - 900px : tablet portrait
+900px - 1200px : tablet landscape
+[1200px - 1800px] is the default size we coded
+1800px + : big desktop
+
+ */
+
+//breakpoint arguments
+
+@mixin respond($breakpoint){
+  @if $breakpoint == phone {
+    @media only screen and (max-width:600px) {@content};
+}
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width:900px) {@content};
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width:1200px) {@content};
+  }
+  @if $breakpoint == big-desk {
+    @media only screen and (min-width:1800px) {@content};
+  }
+}
